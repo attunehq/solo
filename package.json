@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf build node_modules",
+    "build": "esbuild --outdir=./build --format=esm --platform=node --packages=external --bundle --alias:~=./src --sourcemap ./main.ts",
+    "dev": "run-p dev:js dev:run | pino-pretty --minimumLevel debug",
+    "dev:js": "esbuild --outdir=./build --format=esm --platform=node --packages=external --bundle --alias:~=./src --sourcemap --watch ./main.ts",
+    "dev:run": "node --enable-source-maps --watch --watch-preserve-output ./build/main.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "start": "node --enable-source-maps ./build/main.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@slack/bolt": "^4.2.1",
+    "openai": "^4.89.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.10",
+    "esbuild": "^0.25.1",
+    "eslint": "^9.22.0",
+    "npm-run-all": "^4.1.5",
+    "pino-pretty": "^13.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": "v23.9.0",
+    "npm": "11.2.0"
+  },
+  "engineStrict": true
+}
