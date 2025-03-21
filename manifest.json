@@ -22,7 +22,8 @@
       "scopes": {
           "user": [
               "channels:history",
-              "channels:read"
+              "channels:read",
+              "users:read"
           ],
           "bot": [
               "im:history",
